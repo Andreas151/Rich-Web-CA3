@@ -8,7 +8,9 @@ getNote().forEach((note) => {
     noteContainer.insertBefore(noteElement, addNoteButton);
 });
 
-addNoteButton.addEventListener("click", () => addNote());
+const addNoteButtonObservable = fromEvent(addNoteButton, 'click');
+const addNotebuttonSubscriber = addNoteButtonObservable.subscribe(addNote);
+//addNoteButton.addEventListener("click", () => addNote());
 
 function getNote() {
     return JSON.parse(localStorage.getItem("Note taking app") || "[]");
@@ -35,6 +37,8 @@ function createNoteElement(id, content){
     element.addEventListener("change", () => {
         updateNote(id, element.value);
     });
+
+    //const deleteElement = fromEvent (deleteElement, 'click').subscribe (() => )
     deleteElement.addEventListener("click", () => {
        const doDelete = confirm("are you sure you want to delete this note?");
        if (doDelete){
@@ -48,13 +52,15 @@ function createNoteElement(id, content){
       //  addColor("red", element);
      //});
 
-     bluebuttn.addEventListener("click", () => {
-        addColor("blue", element);
-     });
+     const rxjsblbtn = fromEvent(bluebuttn, 'click').subscribe (() => addColor("blue", element))
+     //bluebuttn.addEventListener("click", () => {
+       // addColor("blue", element);
+     //});
 
-     greenbuttn.addEventListener("click", () => {
-        addColor("green", element);
-     });
+     const rxjsgnbtn = fromEvent(greenbuttn, 'click').subscribe (() => addColor("green", element))
+     //greenbuttn.addEventListener("click", () => {
+       // addColor("green", element);
+     //});
 
     box.appendChild(element);
     box.appendChild(deleteElement);
