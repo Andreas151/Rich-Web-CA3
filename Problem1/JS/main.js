@@ -8,8 +8,8 @@ getNote().forEach((note) => {
     noteContainer.insertBefore(noteElement, addNoteButton);
 });
 
-const addNoteButtonObservable = fromEvent(addNoteButton, 'click');
-const addNotebuttonSubscriber = addNoteButtonObservable.subscribe(addNote);
+fromEvent(addNoteButton, 'click').subscribe(addNote);
+//addNoteButtonObservable.subscribe(addNote);
 //addNoteButton.addEventListener("click", () => addNote());
 
 function getNote() {
@@ -38,26 +38,27 @@ function createNoteElement(id, content){
         updateNote(id, element.value);
     });
 
-    //const deleteElement = fromEvent (deleteElement, 'click').subscribe (() => )
-    deleteElement.addEventListener("click", () => {
+    fromEvent (deleteElement, 'click').subscribe (() => deleteNote(id, box) )
+    
+    /*deleteElement.addEventListener("click", () => {
        const doDelete = confirm("are you sure you want to delete this note?");
        if (doDelete){
         deleteNote(id, box);
        }
-    });
+    });*/
 
     //let rdbtn = document.getElementById("red")
-    const rxjsrdbtn = fromEvent(redbuttn, 'click').subscribe (() => addColor("red", element))
+    fromEvent(redbuttn, 'click').subscribe (() => addColor("red", element))
     //redbuttn.addEventListener("click", () => {
       //  addColor("red", element);
      //});
 
-     const rxjsblbtn = fromEvent(bluebuttn, 'click').subscribe (() => addColor("blue", element))
+     fromEvent(bluebuttn, 'click').subscribe (() => addColor("blue", element))
      //bluebuttn.addEventListener("click", () => {
        // addColor("blue", element);
      //});
 
-     const rxjsgnbtn = fromEvent(greenbuttn, 'click').subscribe (() => addColor("green", element))
+     fromEvent(greenbuttn, 'click').subscribe (() => addColor("green", element))
      //greenbuttn.addEventListener("click", () => {
        // addColor("green", element);
      //});
@@ -92,9 +93,13 @@ function updateNote(id, newContent){
 }
 
 function deleteNote(id, element){
+    const doDelete = confirm("are you sure you want to delete this note?");
+    if (doDelete){
+    
     const notes = getNote().filter((note) => note.id != id);
     saveNote(notes);
     noteContainer.removeChild(element);
+    }
 }
 
 function addColor(color, element) {
