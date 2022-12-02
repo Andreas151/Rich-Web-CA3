@@ -1,4 +1,3 @@
-<script>
             const { Observable, interval } = rxjs;
             const { timeInterval, take } = rxjs.operators;
             let timer = 100;
@@ -19,4 +18,3 @@
                         (document.getElementById("para").innerHTML = timer - x)
                 );
             }
-        </script>
