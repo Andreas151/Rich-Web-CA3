@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Countdown</h1>
+        <input id="time" type="time" value="00:00:13" step="2" />
+        <button id="start">Start Countdown</button>
+        <p id="timeValue"></p>
+        <div id="countDown"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.1.0/rxjs.umd.js"></script>
+        <script>
+            const { Observable, interval } = rxjs;
+            const { timeInterval, take } = rxjs.operators;
+
+            const secondsInterval = interval(1000);
+            const time = document.getElementById("time").value;
+
+            document
+                .getElementById("start")
+                .addEventListener("click", function () {
+                    setTime(Math.floor(Math.random() * 100000));
+                });
+
+            function setTime(id) {
+                //Create a new node
+                const element = document.createElement("p");
+                element.id = id;
+
+                document.getElementById("countDown").appendChild(element);
+
+                const countDownTime = timeToSeconds(
+                    document.getElementById("time").value
+                );
+
+                const countDown = secondsInterval.pipe(take(countDownTime));
+
+                countDown.subscribe((x) => {
+                    document.getElementById(id).innerHTML = formatTime(
+                        countDownTime - x - 1
+                    );
+                });
+            }
+
+            function timeToSeconds(timeString) {
+                const splitTime = timeString.split(":");
+                const hours = parseInt(splitTime[0]) * (60 * 60);
+                const minutes = parseInt(splitTime[1]) * 60;
+                const seconds = parseInt(splitTime[2]);
+
+                console.log("hours: " + hours);
+                console.log("minutes: " + minutes);
+                console.log("seconds: " + seconds);
+
+                return hours + minutes + seconds;
+            }
+
+            function formatTime(secondsTotal) {
+                const hours = Math.floor(secondsTotal / (60 * 60));
+                const minutes = Math.floor((secondsTotal / 60) % 60);
+                const seconds = Math.floor(secondsTotal % 60);
+
+                return hours + ":" + minutes + ":" + seconds;
+            }
+        </script>
+    </body>
+</html>
