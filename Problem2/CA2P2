@@ -1,0 +1,22 @@
+<script>
+            const { Observable, interval } = rxjs;
+            const { timeInterval, take } = rxjs.operators;
+            let timer = 100;
+
+            const seconds = interval(1000);
+
+            //document.getElementById("para").innerHTML = timer;
+
+            //document.getElementById("btn").addEventListener("click", fun);
+            document.getElementById("tre").addEventListener("click", fun(3));
+            document.getElementById("ti").addEventListener("click", fun(10));
+
+            function fun(sec) {
+                const countDown = seconds.pipe(take(sec));
+
+                countDown.subscribe(
+                    (x) =>
+                        (document.getElementById("para").innerHTML = timer - x)
+                );
+            }
+        </script>
