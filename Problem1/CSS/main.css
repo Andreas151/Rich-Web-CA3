@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    background-color: brown;
+}
+
+#application{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 360px);
+    padding: 12px;
+    gap: 12px;
+}
+
+.note{ 
+    height: 200px;
+    box-sizing: border-box;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+    resize: none;
+}
+
+.add-note {
+    height: 200px;
+    border: none;
+    outline: none;
+    background: rgba(0,0,0,0.1);
+    border-radius: 12px;
+    color:black;
+    cursor: pointer;
+}
+
+.add-note:hover {
+    background-color: rgba(0,0,0,0.2);
+}
+
+.red, .blue, .green {
+    width: 30px;
+    height: 30px;
+}
+
+.green {
+    background-color: green;
+}
+
+ .blue {
+    background-color: blue;
+}
+
+.red {
+   background-color: red; 
+}
+
+.redbox{
+    color: white;
+    background-color: red;
+}
+
+.redbox::placeholder{
+    color: white;
+}
+
+.bluebox{
+    color: white;
+    background-color: rgb(47, 0, 255);
+}
+
+.bluebox::placeholder{
+    color: white;
+}
+
+.greenbox{
+    color: white;
+    background-color: rgb(33, 190, 33);
+}
+
+.greenbox::placeholder{
+    color: white;
+}
