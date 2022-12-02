@@ -1,3 +1,4 @@
+const { Observable, fromEvent } = rxjs;
 const noteContainer = document.getElementById("application");
 const addNoteButton = noteContainer.querySelector(".add-note");
 
@@ -41,9 +42,11 @@ function createNoteElement(id, content){
        }
     });
 
-    redbuttn.addEventListener("click", () => {
-        addColor("red", element);
-     });
+    //let rdbtn = document.getElementById("red")
+    const rxjsrdbtn = fromEvent(redbuttn, 'click').subscribe (() => addColor("red", element))
+    //redbuttn.addEventListener("click", () => {
+      //  addColor("red", element);
+     //});
 
      bluebuttn.addEventListener("click", () => {
         addColor("blue", element);
